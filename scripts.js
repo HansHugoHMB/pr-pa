@@ -1,13 +1,17 @@
+var encodedPath = "Y29udGVudC5odG1s"; //encodé en Base64
+
 var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function() {
+xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
         if (xhr.status === 200) {
             document.getElementById('contenu-dynamique').innerHTML = xhr.responseText;
         } else {
-            console.error('Erreur lors du chargement de content.html:', xhr.status);
-            document.getElementById('contenu-dynamique').innerHTML = 'Erreur lors du chargement du contenu.';
+            console.error('Erreur lors du chargement du contenu:', xhr.status);
+            document.getElementById('contenu-dynamique').innerHTML = 'Erreur lors du chargement.';
         }
     }
 };
-xhr.open('GET', 'content.html', true);
+
+// Décoder le chemin avant de l'utiliser
+xhr.open('GET', atob(encodedPath), true);
 xhr.send();
