@@ -1,0 +1,16 @@
+{
+  "name": "TRACK PRÉPA H",
+  "short_name": "Prépa H",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0D1C40",
+  "theme_color": "#0D1C40",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "features": {
+    "zoom": 0.8,
+    "prevent_screenshot": true,
+    "keep_screen_on": true
+  }
+}
