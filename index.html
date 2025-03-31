@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <link id="favicon" rel="icon" type="image/x-icon">
+  <link rel="icon" href="https://raw.githubusercontent.com/HansHugoHMB/Images/main/FAV.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TRACKING PRÉSENCES PRÉPA H25</title>
@@ -17,25 +17,10 @@
           height: 100%;
       }
   </style>
-  <link id="manifest" rel="manifest">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
     <div id="contenu-dynamique"></div>
-    <script>
-        
-        const faviconBase64 = "aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0hhbnNIdWdvSE1CL0ltYWdlcy9tYWluL0ZBVi5pY28=";
-        const manifestBase64 = "L21hbmlmZXN0Lmpzb24=";
-        const scriptBase64 = "c2NyaXB0cy5qcw==";
-
-         document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("favicon").href = atob(faviconBase64);
-            document.getElementById("manifest").href = atob(manifestBase64);
-
-            
-            const script = document.createElement("script");
-            script.src = atob(scriptBase64);
-            document.body.appendChild(script);
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
