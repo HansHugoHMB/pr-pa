@@ -1,4 +1,4 @@
-var encodedPath = "Y29udGVudC5odG1s"; //encodé en Base64
+var encodedPath = "Y29udGVudC5odG1s";
 
 var xhr = new XMLHttpRequest();
 xhr.onreadystatechange = function () {
