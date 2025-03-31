@@ -1,14 +1,9 @@
-// scripts.js
-
-// Fonction pour charger un fichier HTML externe (content.html)
-function loadContent(url) {
-  fetch(url)
+fetch('content.html')
     .then(response => response.text())
     .then(data => {
-      document.getElementById('content-container').innerHTML = data;
+        document.getElementById('contenu-dynamique').innerHTML = data;
     })
-    .catch(error => console.error('Erreur lors du chargement du contenu:', error));
-}
-
-// Charger dynamiquement le contenu HTML
-loadContent('content.html');
+    .catch(error => {
+        console.error('Erreur lors du chargement de content.html:', error);
+        document.getElementById('contenu-dynamique').innerHTML = 'Erreur lors du chargement du contenu.';
+    });
