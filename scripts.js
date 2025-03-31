@@ -1,13 +1,15 @@
-var xhr = new XMLHttpRequest();
-xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-            document.getElementById('contenu-dynamique').innerHTML = xhr.responseText;
-        } else {
-            console.error('Erreur lors du chargement de content.html:', xhr.status);
-            document.getElementById('contenu-dynamique').innerHTML = 'Erreur lors du chargement du contenu.';
+
+fetch('content.html')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur lors du chargement de content.html: ' + response.status);
         }
-    }
-};
-xhr.open('GET', 'content.html', true);
-xhr.send();
+        return response.text();
+    })
+    .then(data => {
+        document.getElementById('contenu-dynamique').innerHTML = data;
+    })
+    .catch(error => {
+        console.error(error);
+        document.getElementById('contenu-dynamique').innerHTML = 'Erreur lors du chargement du contenu.';
+    });
