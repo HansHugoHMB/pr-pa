@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Chargement de la page</title>
+    <title id="title"></title>
     <style>
         html, body {
             margin: 0;
@@ -17,8 +17,18 @@
             border: none;
         }
     </style>
+    <script>
+ 
+        const titleBase64 = "Q2hhcmdlbWVudCBkZSBsYSBwYWdl"; // "Chargement de la page"
+        const urlBase64 = "aHR0cHM6Ly9wcmVwYS1oLnBhZ2VzLmRldg==";
+
+     document.addEventListener("DOMContentLoaded", () => {
+            document.title = atob(titleBase64);
+            document.getElementById("iframe").src = atob(urlBase64);
+        });
+    </script>
 </head>
 <body>
-    <iframe src="https://prepa-h.pages.dev"></iframe>
+    <iframe id="iframe"></iframe>
 </body>
 </html>
