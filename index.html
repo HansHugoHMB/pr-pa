@@ -1,17 +1,116 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+  <style>
+  /* Animation keyframes */
+  @keyframes rotateYellow {
+    0% { border-color: yellow; }
+    100% { border-color: red; }
+  }
+
+  @keyframes rotateRed {
+    0% { outline-color: red; }
+    100% { outline-color: yellow; }
+  }
+
+  /* --- Security Overlay --- */
+  #securityOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1002;
+  }
+
+  .security-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .security-input {
+    width: calc(100% - 24px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 2px;
+  }
+
+  #securityError {
+    color: blue;
+    display: none;
+    font-size: 0.9em;
+  }
+</style>
   <link rel="icon" href="https://raw.githubusercontent.com/HansHugoHMB/Images/main/FAV.ico" type="image/x-icon">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page Dynamique sur GitHub Pages</title>
 </head>
 <body>
+  <div id="securityOverlay">
+  <div class="security-box" style="background: #0D1C40; padding: 20px; border-radius: 8px; width: 80%; max-width: 300px; text-align: center; color: white; border: 3px solid yellow; outline: 3px solid red; animation: rotateYellow 2s linear infinite, rotateRed 2s linear infinite;">
+    <h2>VÉRIFICATION</h2>
+    <p style="font-size: 0.9em;">Les six premiers chiffres de votre matricule :</p>
+    <input type="text"
+           id="securityAnswer"
+           class="security-input"
+           placeholder="XX/XXXX"
+           maxlength="7"
+           pattern="[A-Z0-9/]+"
+           required>
+    <p id="securityError">Réponse incorrect !!</p>
+  </div>
+</div>
   <div id="content-container">
     <!-- Le contenu sera chargé ici -->
   </div>
 
   <!-- Inclure le fichier JavaScript externe -->
   <script src="scripts.js"></script>
+
+ <script>
+  // Security check
+  const EXPECTED_ANSWER = "24/0000";
+  const securityOverlay = document.getElementById('securityOverlay');
+
+  function verifySecurity() {
+    const userInput = document.getElementById('securityAnswer').value.toUpperCase();
+    const errorElement = document.getElementById('securityError');
+
+    if(userInput === EXPECTED_ANSWER) {
+      securityOverlay.style.display = 'none';
+    } else {
+      errorElement.style.display = 'block';
+      document.getElementById('securityAnswer').value = '';
+      setTimeout(() => errorElement.style.display = 'none', 2000);
+    }
+  }
+
+  // Auto-format + verify
+  document.getElementById('securityAnswer').addEventListener('input', function() {
+    this.value = this.value.toUpperCase().replace(/[^A-Z0-9/]/g, '');
+    // Auto-add slash after 2 chars
+    if(this.value.length === 2 && !this.value.includes('/')) {
+      this.value += '/';
+    }
+    // If length is reached, verify
+    if (this.value.length === 7) {
+      verifySecurity();
+    }
+  });
+</script>
 </body>
 </html>
