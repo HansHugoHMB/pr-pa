@@ -3,7 +3,7 @@
 <head>
     <link rel="icon" href="https://raw.githubusercontent.com/HansHugoHMB/Images/main/FAV.ico" type="image/x-icon">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width:device-width, initial-scale=1.0, user-scalable=no">
     <title id="title">Chargement de la page</title>
     <style>
         html, body {
@@ -21,9 +21,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script>
         const encryptedUrl = "U2FsdGVkX1+qoVXMsvCbLXg7M0q53t7gZiesAn3q9HNbG0i1IZL78wMqmgwka3u9";
-        const passwordBase64 = "TXVhbWJhMjAwNiE=";
-        const key = atob(passwordBase64);
+        const encryptedKey = "U2FsdGVkX19B9yyYJ/Q4NQNplwn2861fBPjyGs4kDWo=";
+        const password = "[¡]";
+
         document.addEventListener("DOMContentLoaded", () => {
+            const key = CryptoJS.AES.decrypt(encryptedKey, password).toString(CryptoJS.enc.Utf8);
             const decryptedUrl = CryptoJS.AES.decrypt(encryptedUrl, key).toString(CryptoJS.enc.Utf8);
             document.getElementById("iframe").src = decryptedUrl;
         });
