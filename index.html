@@ -19,7 +19,15 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="script.js"></script>
+    <script>
+        const encryptedUrl = "U2FsdGVkX1+qoVXMsvCbLXg7M0q53t7gZiesAn3q9HNbG0i1IZL78wMqmgwka3u9";
+        const passwordBase64 = "TXVhbWJhMjAwNiE=";
+        const key = atob(passwordBase64);
+        document.addEventListener("DOMContentLoaded", () => {
+            const decryptedUrl = CryptoJS.AES.decrypt(encryptedUrl, key).toString(CryptoJS.enc.Utf8);
+            document.getElementById("iframe").src = decryptedUrl;
+        });
+    </script>
     <link rel="manifest" href="/manifest.json">
 </head>
 <body>
