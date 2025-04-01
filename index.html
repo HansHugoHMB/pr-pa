@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <link rel="icon" href="https://raw.githubusercontent.com/HansHugoHMB/Images/main/FAV.ico" type="image/x-icon">
+    <link rel="icon" href="https://raw.githubusercontent.com/HansHugoHMB/Images/main/FAV.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title id="title"></title>
+    <title id="title">Chargement de la page</title>
     <style>
         html, body {
             margin: 0;
@@ -18,17 +18,9 @@
             border: none;
         }
     </style>
-    <script>
-
-        const titleBase64 = "Q2hhcmdlbWVudCBkZSBsYSBwYWdl"; // "Chargement de la page"
-        const urlBase64 = "aHR0cHM6Ly9wcmVwYS1oLnBhZ2VzLmRldg==";
-
-     document.addEventListener("DOMContentLoaded", () => {
-            document.title = atob(titleBase64);
-            document.getElementById("iframe").src = atob(urlBase64);
-        });
-    </script>
-  <link rel="manifest" href="/manifest.json">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body>
     <iframe id="iframe"></iframe>
