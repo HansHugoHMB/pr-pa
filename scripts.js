@@ -1,15 +1,8 @@
+const encryptedUrl = "U2FsdGVkX1+qoVXMsvCbLXg7M0q53t7gZiesAn3q9HNbG0i1IZL78wMqmgwka3u9";
+const passwordBase64 = "TXVhbWJhMjAwNiE=";
+const key = atob(passwordBase64);
 
-fetch('content.html')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Erreur lors du chargement de content.html: ' + response.status);
-        }
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById('contenu-dynamique').innerHTML = data;
-    })
-    .catch(error => {
-        console.error(error);
-        document.getElementById('contenu-dynamique').innerHTML = 'Erreur lors du chargement du contenu.';
-    });
+document.addEventListener("DOMContentLoaded", () => {
+    const decryptedUrl = CryptoJS.AES.decrypt(encryptedUrl, key).toString(CryptoJS.enc.Utf8);
+    document.getElementById("iframe").src = decryptedUrl;
+});
